@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Asset info</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <style>
+    * {
+      padding: 0;
+      margin: 0;
+    }
+
+    .inner-wrap {
+      width: 90%;
+      height: 70%;
+      display: flex;
+      align-items: center;
+    }
+
+    .inner-wrap-img {
+      width: 50%;
+    }
+
+    .inner-wrap-img img {
+      width: 100%;
+    }
+
+    .inner-wrap-content {
+      width: 50%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      color: #fff;
+    }
+
+    .head {
+      width: 70%;
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .head h1 {
+      font-size: 40px;
+      font-weight: 700;
+    }
+
+    .body {
+      width: 80%;
+      text-align: center;
+    }
+
+    .body p {
+      font-size: 20px;
+    }
+
+    .btns {
+      margin-top: 20px;
+    }
+
+    .btns a {
+      background: #fff;
+      color: rgb(0, 0, 46);
+      font-size: 20px;
+      font-weight: 700;
+      padding: 5px 25px;
+      border-radius: 20px;
+      text-transform: uppercase;
+      border: 2px solid rgb(0, 0, 46);
+      transition: all ease-out 0.5s;
+    }
+
+    .btns:hover a {
+      background: transparent;
+      color: #fff;
+      border: 2px solid #fff;
+    }
+
+    @media only screen and (max-width: 1024px) {
+      .inner-wrap {
+        width: 100%;
+      }
+
+      .inner-wrap-img {
+        display: none;
+      }
+
+      .inner-wrap-img img {
+        display: none;
+      }
+
+      .inner-wrap-content {
+        width: 100%;
+      }
+    }
+  </style>
+  <body>
+    <div
+      class="wrap w-full h-screen bg-slate-950 flex justify-center items-center overflow-hidden"
+    >
+      <div class="inner-wrap">
+        <div class="inner-wrap-img">
+          <img src="../media/Checking boxes-rafiki.png" alt="" />
+        </div>
+        <div class="inner-wrap-content">
+          <div class="head">
+            <h1>Asset Management System</h1>
+          </div>
+          <div class="body">
+            <p>
+              Lorem ipsum dolor sit, amet consectetur adipisicing elit.
+              Asperiores, totam. Aliquam fugiat hic impedit voluptate!
+            </p>
+          </div>
+          <div class="btns">
+            <a href="login">Login</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

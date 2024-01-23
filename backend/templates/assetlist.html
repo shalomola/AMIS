@@ -1,0 +1,36 @@
+{% extends "templates/admin_base.html" %} {% block content %}
+<div class="w-full border-box px-6">
+    <table class="w-full table-auto text-left">
+      <thead class="border-b">
+        <td class="text text-2xl font-bold">ID</td>
+        <td class="text text-2xl font-bold">Name</td>
+        <td class="text text-2xl font-bold">Category</td>
+        <td class="text text-2xl font-bold">Manufacturer</td>
+        <td class="text text-2xl font-bold">Date Purchased</td>
+      </thead>
+      <tbody>
+        {% for asset in assets reversed %}
+        <tr class="border-b my-5 py-2">
+          <td class="text text-xl font-semibold py-3">{{asset.asset_id}}</td>
+          <td class="text text-xl font-semibold">
+            {{asset.asset_name}}
+          </td>
+          <td class="text text-xl font-semibold">{{asset.asset_category}}</td>
+          <td class="text text-xl font-semibold">{{asset.asset_manufacturer}}</td>
+          <td class="text text-xl font-semibold">{{asset.date_purchased|date:"d m,Y"}}</td>
+          <td class="text text-lg font-semibold flex justify-center text-white bg-red-600 p-1 mt-2 rounded-lg"><a href="/delete_asset/{{asset.id}}">delete</a></td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+    </div>
+    <div class="add-user">
+      <a href="addasset">
+         <i
+        class="bi bi-plus-circle-fill text-slate-950 text-7xl absolute right-10 bottom-10 cursor-pointer z-50"
+      ></i>
+      </a>
+     
+    </div>
+</div>
+{% endblock content %}

@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Asset info</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+      .warn {
+        color: red;
+        text-align: center;
+      }
+      .form-container {
+        box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+        width: 30%;
+      }
+
+      .form-img {
+        width: 50%;
+      }
+
+      .login-form-container {
+        width: 100%;
+      }
+
+      .content {
+        width: 40%;
+      }
+
+      @media only screen and (max-width: 780px) {
+        .form-container {
+          width: 60%;
+        }
+
+        .form-img {
+          display: none;
+        }
+
+        .login-form-container {
+          position: relative;
+          width: 100%;
+        }
+      }
+
+      @media only screen and (max-width: 480px) {
+        .form-container {
+          width: 90%;
+        }
+
+        .form-img {
+          display: none;
+        }
+
+        .login-form-container {
+          position: relative;
+          width: 100%;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    {% if user.is_authenticated and user.is_staff %}
+    <div
+      class="addasset-wrapper bg-white w-full h-screen flex justify-center items-center"
+    >
+      <div class="form-container h-auto flex rounded-xl">
+        <div
+          class="login-form-container bg-white flex flex-col justify-start py-5 px-5"
+        >
+          <div class="login-head w-full flex justify-center p-5">
+            <h1 class="text text-4xl font-extrabold uppercase mb-14">
+              Add New Asset
+            </h1>
+          </div>
+
+          {% for message in messages %}
+          <h5 class="warn">{{message}}</h5>
+          {% endfor %}
+          <form
+            action=""
+            method="POST"
+            class="login-form flex flex-col items-center"
+          >
+            {% csrf_token %}
+            <div class="profile-pic mb-5">
+              <img
+                src="{{user_profile.profileimg.url}}"
+                alt=""
+                class="w-20 h-20 bg-cover bg-center rounded-full mb-5"
+              />
+              <input type="file" name="asset-img" value="" />
+            </div>
+            <input
+              type="text"
+              name="asset-id"
+              placeholder="Asset ID"
+              class="w-full bg-gray-200 text-xl mb-10 p-3 rounded-lg"
+            />
+            <input
+              type="text"
+              name="asset-name"
+              placeholder="Name"
+              class="w-full bg-gray-200 text-xl mb-10 p-3 rounded-lg"
+            />
+
+            <select
+              name="asset-category"
+              id="asset-category"
+              class="w-full bg-gray-200 text-xl mb-10 p-3 rounded-lg"
+            >
+              {% for category in categories %}
+              <option value="" name="asset-category">{{category.name}}</option>
+              {% endfor %}
+            </select>
+
+            <input
+              type="text"
+              name="asset-manufacturer"
+              placeholder="Manufacturer"
+              class="w-full bg-gray-200 text-xl mb-10 p-3 rounded-lg"
+            />
+            <input
+              type="date"
+              name="date-purchased"
+              placeholder="Date-purchased"
+              class="w-full bg-gray-200 text-xl mb-10 p-3 rounded-lg"
+            />
+
+            <input
+              type="submit"
+              class="w-2/5 bg-blue-800 text-2xl p-3 rounded-lg text-white font-bold"
+            />
+          </form>
+        </div>
+      </div>
+    </div>
+    {% else %}
+    <div class="w-full h-screen flex items-center justify-center bg-slate-950">
+      <img
+        src="../media/401 Error Unauthorized-rafiki.png"
+        alt=""
+        class="w-2/5"
+      />
+    </div>
+    {% endif %}
+  </body>
+</html>

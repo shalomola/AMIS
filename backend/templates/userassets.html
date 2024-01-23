@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Asset info - {{user_profile.user.username}}</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- <script src="./tailwind3.js"></script> -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;800&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css"
+    />
+    <style>
+      .goto span {
+        font-size: 20px;
+        font-weight: 600;
+      }
+
+      .goto i {
+        font-size: 16px;
+      }
+
+      .goto {
+        margin-top: 20px;
+      }
+
+      .goto:hover span {
+        color: rgb(0, 0, 46);
+      }
+
+      .goto:hover i {
+        color: rgb(0, 0, 46);
+      }
+
+      .goto.active {
+        background: white;
+        color: rgb(0, 0, 46);
+      }
+
+      .goto.active span,
+      .goto.active i {
+        color: rgb(0, 0, 46);
+      }
+
+      .sidebar {
+        position: relative;
+        width: 20%;
+      }
+
+      .main {
+        width: 80%;
+      }
+
+      .head {
+        top: 0;
+        left: 0;
+        padding: 10px;
+        visibility: hidden;
+      }
+
+      .btn-container {
+        background: #0002;
+      }
+
+      .btn-toggle {
+        width: 15px;
+        height: 3px;
+        background: #000;
+      }
+
+      .btn-toggle::before {
+        content: "";
+        position: absolute;
+        width: 15px;
+        height: 3px;
+        top: -10px;
+        left: 0;
+        background: #000;
+      }
+
+      .btn-toggle::after {
+        content: "";
+        position: absolute;
+        width: 15px;
+        height: 3px;
+        bottom: -10px;
+        left: 0;
+        background: #000;
+      }
+
+      @media only screen and (max-width: 1024px) {
+        .wrap {
+          width: 100%;
+          height: 100vh;
+          top: 0;
+          left: 0;
+          position: relative;
+          /* transform: translateX(-50%); */
+        }
+
+        .sidebar {
+          position: absolute;
+          width: 60%;
+          height: 100%;
+          top: 0;
+          left: -100%;
+          z-index: 50;
+          transition: all 0.7s ease-out;
+        }
+
+        .sidebar.active {
+          left: 0;
+        }
+
+        .main {
+          width: 100%;
+          top: 0;
+          left: 0;
+          background: aquamarine;
+        }
+
+        .head {
+          visibility: visible;
+        }
+
+        .user-info {
+          width: 100%;
+          display: flex;
+          justify-content: center;
+        }
+
+        /* .goto span {
+          display: none;
+        }
+
+        .username {
+          display: none;
+        }
+
+        .logout span {
+          display: none;
+        } */
+
+        .goto {
+          padding-left: 5px;
+        }
+      }
+    </style>
+  </head>
+
+  <body class="bg-white font-[Poppins]">
+    {% if user.is_authenticated %}
+    <div class="wrap relative w-full h-screen flex">
+      <div class="sidebar h-full bg-slate-950 flex flex-col items-center">
+        <div
+          class="user-info w-full text-2xl p-7 mt-1 mb-5 flex items-center justify-between"
+        >
+          <img
+            src="{{user_profile.profileimg.url}}"
+            alt=""
+            class="w-14 h-14 rounded-full"
+          />
+          <h1 class="username text-white">{{user.username}}</h1>
+        </div>
+
+        <div class="gotos w-full h-4/5 flex flex-col pl-16 mt-16">
+          <a
+            href="userprofile"
+            class="goto hover:bg-white flex items-center px-7 py-3 rounded-l-full"
+          >
+            <i class="bi bi-person-circle text-white"></i>
+            <span class="text-[15px] ml-6 text-white uppercase">Profile</span>
+          </a>
+          <a
+            href="userassets"
+            class="goto active hover:bg-white flex items-center px-7 py-3 rounded-l-full"
+          >
+            <i class="bi bi-stack text-white"></i>
+            <span class="ml-6 text-white uppercase">Assets</span>
+          </a>
+          <a href="#" class="logout mt-auto">
+            <i class="bi bi-box-arrow-in-right text-white"></i>
+            <span class="text-lg ml-4 text-white">Logout</span>
+          </a>
+        </div>
+      </div>
+      <div class="main h-full relative z-20 bg-white">
+        <div class="head w-full bg-slate-950 flex justify-end box-border px-7">
+          <div class="btn-cont flex items-center justify-center">
+            <i class="bi bi-justify text-lg text-white" onclick="Openbar()"></i>
+          </div>
+        </div>
+        <div class="w-full border-box px-6">
+          <table class="w-full table-auto text-center">
+            <thead class="border-b">
+              <td class="text text-2xl font-bold">Asset</td>
+              <td class="text text-2xl font-bold">Date Assigned</td>
+            </thead>
+            <tbody>
+              {% for asset in user_asset %}
+              <tr class="border-b my-5 py-2">
+                <td class="text text-xl font-semibold"> {{asset.asset}} </td>
+                <td class="text text-xl font-semibold"> {{asset.date_issued|date:"d m, Y"}} </td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+          </div>
+          <div class="add-user">
+            <a href="assignasset">
+               <i
+              class="bi bi-plus-circle-fill text-slate-950 text-7xl absolute right-10 bottom-10 cursor-pointer z-50"
+            ></i>
+            </a>
+           
+          </div>
+        </div>
+      </div>
+    </div>
+    {% endif %}
+
+    <script>
+      function dropDown() {
+        document.querySelector("#submenu").classList.toggle("hidden");
+        document.querySelector("#arrow").classList.toggle("rotate-0");
+      }
+      dropDown();
+
+      function Openbar() {
+        document.querySelector(".sidebar").classList.toggle("active");
+      }
+    </script>
+  </body>
+</html>

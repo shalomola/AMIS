@@ -1,0 +1,75 @@
+{% extends "templates/admin_base.html" %} {% block content %}
+<div class="w-full h-screen px-5">
+  <div
+    class="stats w-full h-2/6 flex justify-between items-center bg-slate-950 text-white rounded-3xl"
+  >
+    <div
+      class="stat assets w-2/6 h-full flex flex-col items-center justify-center"
+    >
+      <h3>{{assets_count}}</h3>
+      <p>assets</p>
+    </div>
+    <div
+      class="stat staff w-2/6 h-full flex flex-col items-center justify-center"
+    >
+      <h3>{{staff_count}}</h3>
+      <p>staff</p>
+    </div>
+    <div
+      class="stat assigned w-2/6 h-full flex flex-col items-center justify-center"
+    >
+      <h3>{{assignments_count}}</h3>
+      <p>assignments</p>
+    </div>
+  </div>
+  <div class="info w-full h-3/6 my-5 flex items-center justify-evenly">
+    <div class="notify w-3/6 h-full"></div>
+    <div
+      class="todo-container w-2/6 h-full rounded-2xl overflow-hidden bg-zinc-400 flex flex-col justify-between"
+    >
+      <div class="todo-head w-full bg-slate-950 text-white p-4 text-xl">
+        <h3>TODO</h3>
+      </div>
+      <div
+        class="todos w-full p-3 flex flex-col items-center justify-start h-full"
+      >
+        {% for todo in todos %}
+        <div
+          class="todo w-full text-3xl flex justify-between items-center my-3"
+        >
+          <p class="">{{todo.todo}}</p>
+          <a
+            class="text text-sm text-white uppercase mr-4 py-2 px-3 rounded-full bg-slate-950 flex items-center"
+            href="/delete_todo/{{todo.id}}"
+          >
+            <!-- <i class="bi bi-trash3 text-slate-950 text-xl"></i> -->
+            done
+          </a>
+        </div>
+        {% endfor %}
+      </div>
+      <div class="new_todo">
+        <form action="" method="POST" class="w-full flex">
+          {% csrf_token %}
+          <input
+            type="text"
+            name="new_todo"
+            class="w-5/6 bg-white text-slate-950 text-lg py-2 px-1"
+            placeholder="Enter todo"
+          />
+          <button
+            type="submit"
+            class="w-1/6 bg-slate-900 text-white font-bold uppercase"
+          >
+            Add
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock content %}
+
+<!-- {{assets_count}}
+{{staff_count}} -->
