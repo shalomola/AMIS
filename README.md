@@ -3,3 +3,5 @@
 ![Document - Google Chrome 7_13_2023 2_49_40 AM](https://github.com/shalomola/AMIS/assets/83159602/a8da1856-1b13-4f4e-97c5-3e0c0795af47)
 
 ![Document - Google Chrome 7_13_2023 2_49_48 AM](https://github.com/shalomola/AMIS/assets/83159602/857da019-73bc-41b3-9aeb-0f480599349e)
+
+![sidebar - Google Chrome 7_14_2023 11_22_28 AM](https://github.com/shalomola/AMIS/assets/83159602/3f2762e5-0adb-4c95-9885-1119be3196c3)
